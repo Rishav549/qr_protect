@@ -23,12 +23,12 @@ class AuthenticationBloc
   Future<void> _authLogged(AuthenticationLoggedInEvent event, emit) async {
     emit(AuthenticationLoadingState());
     try {
-      // if (await checkLoggedIn()) {
-      //   emit(AuthenticationLoggedInState());
-      // }
-      // else {
-      //   emit(AuthenticationLoggedOutState());
-      // }
+      if (await checkLoggedIn()) {
+        emit(AuthenticationLoggedInState());
+      }
+      else {
+        emit(AuthenticationLoggedOutState());
+      }
     } catch (e) {
       CustomLogger.error(e);
     }
