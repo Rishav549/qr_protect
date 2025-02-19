@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "524280748507",
+    "project_id": "qrprotect-fd52c",
+    "storage_bucket": "qrprotect-fd52c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524280748507:android:c79763d6c0928f12c9affe",
+        "android_client_info": {
+          "package_name": "com.example.qr_protect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAybcb0eDToqn48YLo_e01-e92og6T5QM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
