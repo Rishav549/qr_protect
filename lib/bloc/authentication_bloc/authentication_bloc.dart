@@ -37,15 +37,15 @@ class AuthenticationBloc
   Future<void> _authLogin(AuthenticationLogInEvent event, emit) async {
     emit(AuthenticationLoadingState());
     try {
-      // UserCredential? userCredentials =
-      //     await signInWithEmailAndPassword(event.email, event.password);
-      // User user = userCredentials!.user!;
-      // String uid = user.uid;
-      // if (userCredentials != null) {
-      //   emit(AuthenticationLoggedInState(uid: uid));
-      // } else {
-      //   emit(AuthenticationLoggedOutState());
-      // }
+      UserCredential? userCredentials =
+          await signInWithEmailAndPassword(event.email, event.password);
+      User user = userCredentials!.user!;
+      String uid = user.uid;
+      if (userCredentials != null) {
+        emit(AuthenticationLoggedInState(uid: uid));
+      } else {
+        emit(AuthenticationLoggedOutState());
+      }
     } catch (e) {
       CustomLogger.error(e);
       emit(AuthenticationErrorState(
