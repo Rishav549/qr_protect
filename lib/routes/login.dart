@@ -37,6 +37,9 @@ class _LoginState extends State<Login> {
             listener: (context, state) {
               if (state is AuthenticationLoadingState) {
                 const Center(child: CircularProgressIndicator());
+              } else if (state is AuthenticationErrorState) {
+                Fluttertoast.showToast(
+                    msg: "Incorrect Phone Number or Password");
               } else if (state is AuthenticationLoggedInState) {
                 Fluttertoast.showToast(msg: "Logged In");
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
