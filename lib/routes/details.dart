@@ -14,6 +14,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   var nameController = TextEditingController();
+  var phoneController = TextEditingController();
   var addressController = TextEditingController();
   var vehicleController = TextEditingController();
   var bloodGroupController = TextEditingController();
@@ -43,7 +44,6 @@ class _DetailsState extends State<Details> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +52,9 @@ class _DetailsState extends State<Details> {
         automaticallyImplyLeading: false,
         title: const Center(
             child: Text(
-              "QR Protect",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-            )),
+          "QR Protect",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        )),
         backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
@@ -65,16 +65,25 @@ class _DetailsState extends State<Details> {
             ),
             const Center(
                 child: Text(
-                  "Details",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),
-                )),
+              "Details",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32,
+                  color: Colors.white),
+            )),
             const SizedBox(
               height: 20,
             ),
             CustomInputField(
               controller: nameController,
               label: "Name",
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomInputField(
+              controller: phoneController,
+              label: "Phone Number",
             ),
             const SizedBox(
               height: 20,
@@ -122,20 +131,17 @@ class _DetailsState extends State<Details> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Row(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     "Upload Image:",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                        Colors.black),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.black),
                     onPressed: _pickImage,
                     child: const Text(
                       "Choose File",
@@ -153,12 +159,24 @@ class _DetailsState extends State<Details> {
               child: CustomButton(
                 label: "Continue",
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context){
-                    return const Contact();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Contact(
+                      name: nameController.text,
+                      phone: phoneController.text,
+                      vehicle: vehicleController.text,
+                      address: addressController.text,
+                      bloodGrp: bloodGroupController.text,
+                      height: heightController.text,
+                      weight: weightController.text,
+                      medication: medicationController.text,
+                    );
                   }));
                 },
                 backgroundColor: Colors.black,
               ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
