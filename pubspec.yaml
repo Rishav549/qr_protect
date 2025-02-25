@@ -44,6 +44,8 @@ dependencies:
   bloc: ^8.1.4
   fluttertoast: ^8.2.5
   logger: ^2.3.0
+  dio: ^5.5.0+1
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:

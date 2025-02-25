@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,6 +18,7 @@ class Contact extends StatefulWidget {
   String height;
   String weight;
   String medication;
+  String image;
 
   Contact(
       {super.key,
@@ -27,7 +29,8 @@ class Contact extends StatefulWidget {
       required this.bloodGrp,
       required this.height,
       required this.weight,
-      required this.medication});
+      required this.medication,
+      required this.image});
 
   @override
   State<Contact> createState() => _ContactState();
@@ -131,11 +134,13 @@ class _ContactState extends State<Contact> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: CustomButton(
                         label: "Continue",
-                        onPressed: () {
+                        onPressed: () async{
+
                           UserDetails newData = UserDetails(
                               name: widget.name,
                               phone: widget.phone,
                               address: widget.address,
+                              image: widget.image,
                               vehicle: widget.vehicle,
                               bloodGrp: widget.bloodGrp,
                               height: widget.height,

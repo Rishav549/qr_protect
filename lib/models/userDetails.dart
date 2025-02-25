@@ -2,6 +2,7 @@ class UserDetails {
   String name;
   String phone;
   String address;
+  String image;
   String vehicle;
   String bloodGrp;
   String height;
@@ -18,6 +19,7 @@ class UserDetails {
     required this.name,
     required this.phone,
     required this.address,
+    required this.image,
     required this.vehicle,
     required this.bloodGrp,
     required this.height,
@@ -36,6 +38,7 @@ class UserDetails {
       name: json['name'] ?? '',
       phone: json['phone'] ?? '',
       address: json['address'] ?? '',
+      image: json['image'] ?? '',
       vehicle: json['vehicle'] ?? '',
       bloodGrp: json['bloodGrp'] ?? '',
       height: json['height'] ?? '',
@@ -56,6 +59,7 @@ class UserDetails {
       'phone': phone,
       'address': address,
       'vehicle': vehicle,
+      'image': image,
       'bloodGrp': bloodGrp,
       'height': height,
       'weight': weight,

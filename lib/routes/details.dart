@@ -1,7 +1,9 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_protect/components/textfield.dart';
+import 'package:qr_protect/repo/details/image.dart';
 import 'package:qr_protect/routes/contact.dart';
+import 'package:qr_protect/utilities/logger.dart';
 
 import '../components/custombuttons.dart';
 
@@ -23,6 +25,7 @@ class _DetailsState extends State<Details> {
   var medicationController = TextEditingController();
 
   PlatformFile? _image;
+  String imageUrl = '';
 
   Future<void> _pickImage() async {
     try {
@@ -35,6 +38,8 @@ class _DetailsState extends State<Details> {
         setState(() {
           _image = result.files.first;
         });
+        imageUrl = (await uploadImage(_image!))!;
+        CustomLogger.info(imageUrl);
       } else {
         // User canceled the picker
         print('No files selected');
@@ -169,6 +174,7 @@ class _DetailsState extends State<Details> {
                       height: heightController.text,
                       weight: weightController.text,
                       medication: medicationController.text,
+                      image: imageUrl,
                     );
                   }));
                 },

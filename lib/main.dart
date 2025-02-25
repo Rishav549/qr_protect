@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_protect/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:qr_protect/routes/mainPage.dart';
+import 'package:qr_protect/services/setup.dart';
 
 import 'firebase_options.dart';
 
 void main() async{
+  setup('');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
