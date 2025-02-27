@@ -5,6 +5,7 @@ import 'package:qr_protect/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:qr_protect/components/custombuttons.dart';
 import 'package:qr_protect/components/textfield.dart';
 import 'package:qr_protect/routes/details.dart';
+import 'package:qr_protect/routes/home.dart';
 import 'package:qr_protect/routes/signup.dart';
 
 class Login extends StatefulWidget {
@@ -43,7 +44,7 @@ class _LoginState extends State<Login> {
               } else if (state is AuthenticationLoggedInState) {
                 Fluttertoast.showToast(msg: "Logged In");
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Details();
+                  return const Home();
                 }));
               }
             },

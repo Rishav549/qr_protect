@@ -9,3 +9,15 @@ Future<void> detailsAdd(UserDetails details) async {
     CustomLogger.error(e);
   }
 }
+
+Future<UserDetails?> detailsFetch(String number) async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('data')
+        .where('phone', isEqualTo: number)
+        .get();
+    return UserDetails.fromFirestore(querySnapshot.docs.first);
+  } catch (e) {
+    CustomLogger.error(e);
+  }
+}

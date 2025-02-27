@@ -5,6 +5,7 @@ import 'package:qr_protect/routes/details.dart';
 import 'package:qr_protect/routes/login.dart';
 
 import '../bloc/authentication_bloc/authentication_bloc.dart';
+import 'home.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -31,7 +32,7 @@ class _MainPageState extends State<MainPage> {
           const Center(child: CircularProgressIndicator());
         }
         if (state is AuthenticationLoggedInState) {
-          return const Details();
+          return const Home();
         }
         if(state is AuthenticationLoggedOutState){
           return const Login();

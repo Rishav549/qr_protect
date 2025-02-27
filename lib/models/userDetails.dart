@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserDetails {
   String name;
   String phone;
@@ -50,6 +52,27 @@ class UserDetails {
       phone2: json['phone2'] ?? '',
       name3: json['name3'] ?? '',
       phone3: json['phone3'] ?? '',
+    );
+  }
+
+  factory UserDetails.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return UserDetails(
+      name: doc['name'] ?? '',
+      phone: doc['phone'] ?? '',
+      address: doc['address'] ?? '',
+      image: doc['image'] ?? '',
+      vehicle: doc['vehicle'] ?? '',
+      bloodGrp: doc['bloodGrp'] ?? '',
+      height: doc['height'] ?? '',
+      weight: doc['weight'] ?? '',
+      medication: doc['medication'] ?? '',
+      name1: doc['name1'] ?? '',
+      phone1: doc['phone1'] ?? '',
+      name2: doc['name2'] ?? '',
+      phone2: doc['phone2'] ?? '',
+      name3: doc['name3'] ?? '',
+      phone3: doc['phone3'] ?? '',
     );
   }
 
