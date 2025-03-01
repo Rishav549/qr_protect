@@ -84,7 +84,8 @@ class _ContactState extends State<Contact> {
               } else if (state is DetailsErrorState) {
                 Fluttertoast.showToast(msg: "Error Uploading The data");
               } else if (state is DetailsLoadedState) {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
                   return const Home();
                 }));
               }
