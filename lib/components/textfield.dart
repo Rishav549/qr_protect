@@ -63,7 +63,15 @@ class _CustomInputFieldState extends State<CustomInputField> {
           contentPadding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+            borderSide: const BorderSide(color: Colors.black, width: 1.5),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.black, width: 1.5),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.black, width: 2),
           ),
           suffixIcon: widget.suffixIcon,
         ),

@@ -23,7 +23,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey.shade600,
         appBar: AppBar(
           title: const Center(
               child: Text(
@@ -31,6 +30,7 @@ class _LoginState extends State<Login> {
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           )),
           backgroundColor: Colors.black,
+          leadingWidth: 0,
         ),
         body: BlocProvider(
           create: (_) => AuthenticationBloc(),
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32,
-                        color: Colors.white),
+                        color: Colors.black),
                   )),
                   const SizedBox(
                     height: 20,
@@ -94,6 +94,14 @@ class _LoginState extends State<Login> {
                     child: CustomButton(
                       label: "Sign In",
                       onPressed: () {
+                        if (passwordController.text.length < 8) {
+                          Fluttertoast.showToast(
+                              msg: "Password must be at least 8 characters long",
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white);
+                          return;
+                        }
                         context.read<AuthenticationBloc>().add(
                             AuthenticationLogInEvent(
                                 email: emailController.text,
@@ -114,7 +122,7 @@ class _LoginState extends State<Login> {
                       },
                       child: const Text(
                         "Create An Account/Sign Up",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(fontSize: 18, color: Colors.black),
                       ))
                 ],
               );
