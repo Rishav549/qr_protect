@@ -44,10 +44,28 @@ class _ContactState extends State<Contact> {
   var name3Controller = TextEditingController();
   var phone3Controller = TextEditingController();
 
+  bool _validateFields() {
+    if (name1Controller.text.isEmpty ||
+        phone1Controller.text.isEmpty ||
+        name2Controller.text.isEmpty ||
+        phone2Controller.text.isEmpty ||
+        name3Controller.text.isEmpty ||
+        phone3Controller.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please fill in all required fields.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey.shade600,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Center(
@@ -66,7 +84,7 @@ class _ContactState extends State<Contact> {
               } else if (state is DetailsErrorState) {
                 Fluttertoast.showToast(msg: "Error Uploading The data");
               } else if (state is DetailsLoadedState) {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                   return const Home();
                 }));
               }
@@ -83,7 +101,7 @@ class _ContactState extends State<Contact> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 32,
-                          color: Colors.white),
+                          color: Colors.black),
                     )),
                     const SizedBox(
                       height: 20,
@@ -134,27 +152,28 @@ class _ContactState extends State<Contact> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: CustomButton(
                         label: "Continue",
-                        onPressed: () async{
-
-                          UserDetails newData = UserDetails(
-                              name: widget.name,
-                              phone: widget.phone,
-                              address: widget.address,
-                              image: widget.image,
-                              vehicle: widget.vehicle,
-                              bloodGrp: widget.bloodGrp,
-                              height: widget.height,
-                              weight: widget.weight,
-                              medication: widget.medication,
-                              name1: name1Controller.text,
-                              phone1: phone1Controller.text,
-                              name2: name2Controller.text,
-                              phone2: phone2Controller.text,
-                              name3: name3Controller.text,
-                              phone3: phone3Controller.text);
-                          context
-                              .read<DetailsBloc>()
-                              .add(DetailsPostEvent(data: newData));
+                        onPressed: () async {
+                          if (_validateFields()) {
+                            UserDetails newData = UserDetails(
+                                name: widget.name,
+                                phone: widget.phone,
+                                address: widget.address,
+                                image: widget.image,
+                                vehicle: widget.vehicle,
+                                bloodGrp: widget.bloodGrp,
+                                height: widget.height,
+                                weight: widget.weight,
+                                medication: widget.medication,
+                                name1: name1Controller.text,
+                                phone1: phone1Controller.text,
+                                name2: name2Controller.text,
+                                phone2: phone2Controller.text,
+                                name3: name3Controller.text,
+                                phone3: phone3Controller.text);
+                            context
+                                .read<DetailsBloc>()
+                                .add(DetailsPostEvent(data: newData));
+                          }
                         },
                         backgroundColor: Colors.black,
                       ),
