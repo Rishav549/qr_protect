@@ -26,14 +26,14 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade600,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Center(
             child: Text(
-          "QR Protect",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        )),
+              "QR Protect",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.white),
+            )),
         backgroundColor: Colors.black,
       ),
       body: BlocProvider(
@@ -57,12 +57,12 @@ class _SignupState extends State<Signup> {
               children: [
                 const Center(
                     child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 32,
-                      color: Colors.white),
-                )),
+                      "Sign Up",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32,
+                          color: Colors.black),
+                    )),
                 const SizedBox(
                   height: 20,
                 ),
@@ -97,6 +97,14 @@ class _SignupState extends State<Signup> {
                   child: CustomButton(
                     label: "Sign Up",
                     onPressed: () async {
+                      if (passwordController.text.length < 8) {
+                        Fluttertoast.showToast(
+                            msg: "Password must be at least 8 characters long",
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white);
+                        return;
+                      }
                       try {
                         context.read<AuthenticationBloc>().add(
                             AuthenticationCheckUserEvent(
