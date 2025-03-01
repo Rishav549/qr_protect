@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:qr_protect/components/textfield.dart';
 import 'package:qr_protect/repo/details/image.dart';
 import 'package:qr_protect/routes/contact.dart';
@@ -49,10 +50,29 @@ class _DetailsState extends State<Details> {
     }
   }
 
+  bool _validateFields() {
+    if (nameController.text.isEmpty ||
+        phoneController.text.isEmpty ||
+        addressController.text.isEmpty ||
+        vehicleController.text.isEmpty ||
+        bloodGroupController.text.isEmpty ||
+        heightController.text.isEmpty ||
+        weightController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please fill in all required fields.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade600,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Center(
@@ -74,7 +94,7 @@ class _DetailsState extends State<Details> {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 32,
-                  color: Colors.white),
+                  color: Colors.black),
             )),
             const SizedBox(
               height: 20,
@@ -86,7 +106,7 @@ class _DetailsState extends State<Details> {
                 children: [
                   const Text(
                     "Upload Image:",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
                   ElevatedButton(
                     style:
@@ -164,19 +184,22 @@ class _DetailsState extends State<Details> {
               child: CustomButton(
                 label: "Continue",
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return Contact(
-                      name: nameController.text,
-                      phone: phoneController.text,
-                      vehicle: vehicleController.text,
-                      address: addressController.text,
-                      bloodGrp: bloodGroupController.text,
-                      height: heightController.text,
-                      weight: weightController.text,
-                      medication: medicationController.text,
-                      image: imageUrl,
-                    );
-                  }));
+                  if (_validateFields()) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Contact(
+                        name: nameController.text,
+                        phone: phoneController.text,
+                        vehicle: vehicleController.text,
+                        address: addressController.text,
+                        bloodGrp: bloodGroupController.text,
+                        height: heightController.text,
+                        weight: weightController.text,
+                        medication: medicationController.text,
+                        image: imageUrl,
+                      );
+                    }));
+                  }
                 },
                 backgroundColor: Colors.black,
               ),
