@@ -2,6 +2,7 @@ library authentication_bloc;
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qr_protect/utilities/localStorage.dart';
 
 import '../../models/error.dart';
 import '../../repo/auth/authentication.dart';
@@ -40,6 +41,7 @@ class AuthenticationBloc
           await signInWithEmailAndPassword(event.email, event.password);
       User user = userCredentials!.user!;
       String uid = user.uid;
+      await SecureLocalStorage.setValue("uid", uid);
       if (userCredentials != null) {
         emit(AuthenticationLoggedInState(uid: uid));
       } else {
