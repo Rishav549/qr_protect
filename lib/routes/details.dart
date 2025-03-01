@@ -79,6 +79,30 @@ class _DetailsState extends State<Details> {
             const SizedBox(
               height: 20,
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Upload Image:",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                  ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                    onPressed: _pickImage,
+                    child: const Text(
+                      "Choose File",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             CustomInputField(
               controller: nameController,
               label: "Name",
@@ -131,30 +155,6 @@ class _DetailsState extends State<Details> {
             CustomInputField(
               controller: medicationController,
               label: "Other Medical Information(If Any)",
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Upload Image:",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
-                  ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                    onPressed: _pickImage,
-                    child: const Text(
-                      "Choose File",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
             ),
             const SizedBox(
               height: 20,

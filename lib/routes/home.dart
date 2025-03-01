@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_bar_code/code/code.dart';
+import 'package:qr_protect/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:qr_protect/bloc/qr_bloc/qr_bloc.dart';
+import 'package:qr_protect/utilities/localStorage.dart';
+import 'package:qr_protect/utilities/logger.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,6 +14,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String? uid;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUid();
+  }
+
+  void getUid() async {
+    uid = await SecureLocalStorage.getValue("uid");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +37,17 @@ class _HomeState extends State<Home> {
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           )),
           backgroundColor: Colors.black,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+                context
+                    .read<AuthenticationBloc>()
+                    .add(AuthenticationLogOutEvent());
+              },
+              icon: const Icon(Icons.exit_to_app, color: Colors.white),
+            ),
+          ],
         ),
         body: BlocProvider(
           create: (_) => QrBloc()..add(QRDataFetchEvent(number: "9830718037")),
@@ -33,7 +60,9 @@ class _HomeState extends State<Home> {
                 return SingleChildScrollView(
                   child: Column(
                     children: [
-                      // Code(data: "HII THIS IS THE QR", codeType: CodeType.qrCode())
+                      const SizedBox(
+                        height: 20,
+                      ),
                       SizedBox(
                         width: 300,
                         height: 300,
@@ -104,7 +133,9 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      Code(data: "HII THIS IS THE QR", codeType: CodeType.qrCode()),
+                      Code(
+                          data: "https://qrprotect-fd52c.web.app/#/$uid",
+                          codeType: CodeType.qrCode()),
                       const SizedBox(height: 20),
                     ],
                   ),

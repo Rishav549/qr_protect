@@ -25,8 +25,7 @@ class AuthenticationBloc
     try {
       if (await checkLoggedIn()) {
         emit(AuthenticationLoggedInState());
-      }
-      else {
+      } else {
         emit(AuthenticationLoggedOutState());
       }
     } catch (e) {
@@ -72,7 +71,7 @@ class AuthenticationBloc
   }
 
   Future<void> _authLogout(AuthenticationLogOutEvent event, emit) async {
-    //await logOutUser();
+    await logOutUser();
     emit(AuthenticationLoggedOutState());
   }
 }
