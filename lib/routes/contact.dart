@@ -84,10 +84,11 @@ class _ContactState extends State<Contact> {
               } else if (state is DetailsErrorState) {
                 Fluttertoast.showToast(msg: "Error Uploading The data");
               } else if (state is DetailsLoadedState) {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
-                  return const Home();
-                }));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()), // Replace with your home page widget
+                      (Route<dynamic> route) => false, // This removes all previous routes
+                );
               }
             }, builder: (context, state) {
               return SingleChildScrollView(
