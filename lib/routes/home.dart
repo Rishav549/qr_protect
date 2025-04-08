@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
           automaticallyImplyLeading: false,
           title: const Center(
               child: Text(
-            "QR Protect",
+            "QRSVr",
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           )),
           backgroundColor: Colors.black,

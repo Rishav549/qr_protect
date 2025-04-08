@@ -30,7 +30,7 @@ class _SignupState extends State<Signup> {
         automaticallyImplyLeading: false,
         title: const Center(
             child: Text(
-              "QR Protect",
+              "QRSVr",
               style: TextStyle(
                   fontWeight: FontWeight.bold, color: Colors.white),
             )),

@@ -70,7 +70,7 @@ class _ContactState extends State<Contact> {
           automaticallyImplyLeading: false,
           title: const Center(
               child: Text(
-            "QR Protect",
+            "QRSVr",
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           )),
           backgroundColor: Colors.black,

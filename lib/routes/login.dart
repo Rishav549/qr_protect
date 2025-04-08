@@ -24,9 +24,10 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Center(
               child: Text(
-            "QR Protect",
+            "QRSVr",
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           )),
           backgroundColor: Colors.black,

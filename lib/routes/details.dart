@@ -77,7 +77,7 @@ class _DetailsState extends State<Details> {
         automaticallyImplyLeading: false,
         title: const Center(
             child: Text(
-          "QR Protect",
+          "QRSVr",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         )),
         backgroundColor: Colors.black,
