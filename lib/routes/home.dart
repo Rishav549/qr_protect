@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_bar_code/code/code.dart';
 import 'package:qr_protect/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:qr_protect/bloc/qr_bloc/qr_bloc.dart';
+import 'package:qr_protect/routes/login.dart';
 import 'package:qr_protect/utilities/localStorage.dart';
 import 'package:qr_protect/utilities/logger.dart';
 
@@ -31,6 +32,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Center(
               child: Text(
             "QR Protect",
@@ -44,6 +46,9 @@ class _HomeState extends State<Home> {
                 context
                     .read<AuthenticationBloc>()
                     .add(AuthenticationLogOutEvent());
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                  return const Login();
+                }));
               },
               icon: const Icon(Icons.exit_to_app, color: Colors.white),
             ),
